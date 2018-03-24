@@ -5,14 +5,18 @@
 
 #define DELAY 60 //Delay in seconds between connection tests
 #define PIN 0 //WiringPi GPIO pin number
-#define STARTTIME 8 //Start time for connection testing in 24-hour format
-#define STOPTIME 16 //End time
+
+#define STARTDAY 1 //Start day of week for connection testing in numerical format (0 - Sunday, 6 - Saturday)
+#define STOPDAY 5 //End day of week
+#define STARTHOUR 8 //Start hour for connection testing in 24-hour format
+#define STOPHOUR 16 //End hour
 
 void blink(void); //Flash sign to signal a change in state
+int get_day(void) //Get current day of week in numerical format
 int get_hour(void); //Get current hour in 24-hour format
 
 int main(void) {
-    int hour = get_hour();
+    int day = get_day(), hour = get_hour();
     int enabled = 1;
 
     //Set up GPIO
@@ -21,8 +25,8 @@ int main(void) {
     blink();
 
     while (1) {
-        //Only run in allocated time frame
-        if (hour >= STARTTIME && hour < STOPTIME) {
+        //Only run in alloted time frame
+        if (day >= STARTDAY && day <= STOPDAY && hour >= STARTHOUR && hour < STOPHOUR) {
             //Signal enabling of sign if disabled
             if (!enabled) {
                 enabled = 1;
@@ -39,6 +43,7 @@ int main(void) {
         }
 
         sleep(DELAY);
+        day = get_day();
         hour = get_hour();
     }
 
@@ -57,6 +62,12 @@ void blink(void) {
     }
 
     digitalWrite(PIN, LOW);
+}
+
+//Get current day of week in numerical format
+int get_day(void) {
+    time_t current_time = time(NULL);
+    return localtime(&current_time)->tm_wday;
 }
 
 //Get current hour in 24-hour format
