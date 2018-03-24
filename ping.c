@@ -12,7 +12,7 @@
 #define STOPHOUR 16 //End hour
 
 void blink(void); //Flash sign to signal a change in state
-int get_day(void) //Get current day of week in numerical format
+int get_day(void); //Get current day of week in numerical format
 int get_hour(void); //Get current hour in 24-hour format
 
 int main(void) {
