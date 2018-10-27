@@ -7,7 +7,7 @@
 #define PIN 0 //WiringPi GPIO pin number
 
 #define STARTDAY 1 //Start day of week for connection testing in numerical format (0 - Sunday, 6 - Saturday)
-#define STOPDAY 5 //End day of week
+#define STOPDAY 6 //End day of week
 #define STARTHOUR 8 //Start hour for connection testing in 24-hour format
 #define STOPHOUR 16 //End hour
 
@@ -34,7 +34,7 @@ int main(void) {
             }
 
             //Ping Google DNS and toggle sign based on success
-            digitalWrite(PIN, !system("ping -c3 8.8.8.8 > /dev/null"));
+            digitalWrite(PIN, !system("ping -c3 example.com > /dev/null"));
         }
         //Signal disabling of sign in off-hours
         else if (enabled) {
