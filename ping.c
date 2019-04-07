@@ -33,7 +33,7 @@ int main(void) {
                 blink();
             }
 
-            //Ping Google DNS and toggle sign based on success
+            //Ping test website and toggle sign based on success
             digitalWrite(PIN, !system("ping -c3 example.com > /dev/null"));
         }
         //Signal disabling of sign in off-hours
