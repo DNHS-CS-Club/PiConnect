@@ -31,7 +31,7 @@
 #define STARTDAY 1 //Start day of week for connection testing in numerical format (0 - Sunday, 6 - Saturday)
 #define STOPDAY 5 //End day of week
 #define STARTHOUR 8 //Start hour for connection testing in 24-hour format
-#define STOPHOUR 16 //End hour
+#define STOPHOUR 17 //End hour
 
 void blink(void); //Flash sign to signal a change in state
 int get_day(void); //Get current day of week in numerical format
